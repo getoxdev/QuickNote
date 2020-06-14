@@ -69,4 +69,14 @@ public class NotesRepo {
     {
         return notesDatabase.notesDao().getNoteByID(noteID);
     }
+
+    public void deleteNote(NoteEntity noteEntity)
+    {
+        mExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                notesDatabase.notesDao().delete(noteEntity);
+            }
+        });
+    }
 }

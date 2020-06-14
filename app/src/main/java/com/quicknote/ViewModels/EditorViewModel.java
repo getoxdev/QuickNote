@@ -60,4 +60,9 @@ public class EditorViewModel extends AndroidViewModel {
 
         notesRepo.insertNote(noteEntity);
     }
+
+    public void deleteNote()
+    {
+        notesRepo.deleteNote(liveNote.getValue());
+    }
 }

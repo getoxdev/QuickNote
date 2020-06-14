@@ -61,6 +61,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         return mNotesList.size();
     }
 
+    public NoteEntity getNoteAtPosition(int position)
+    {
+        return mNotesList.get(position);
+    }
+
     class MyViewHolder extends RecyclerView.ViewHolder
     {
         @BindView(R.id.note_text)
