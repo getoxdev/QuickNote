@@ -15,9 +15,6 @@ public interface NotesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertNote(NoteEntity noteEntity);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<NoteEntity> noteEntities);
-
     @Delete()
     void delete(NoteEntity noteEntity);
 

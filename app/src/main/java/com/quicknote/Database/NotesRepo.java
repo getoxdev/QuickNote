@@ -1,11 +1,8 @@
 package com.quicknote.Database;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 
 import androidx.lifecycle.LiveData;
-
-import com.quicknote.Utils.SampleData;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -28,16 +25,6 @@ public class NotesRepo {
     {
         notesDatabase = NotesDatabase.getInstance(context);
         mNotesList = getNotes();
-    }
-
-    public void addSampleData()
-    {
-        mExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                notesDatabase.notesDao().insertAll(SampleData.getSampleData());
-            }
-        });
     }
 
     private LiveData<List<NoteEntity>> getNotes()

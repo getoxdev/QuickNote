@@ -116,9 +116,10 @@ public class EditorActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        if(item.getItemId() == R.id.home)
+        if(item.getItemId() == android.R.id.home)
         {
             saveAndExit();
+            finish();
             return true;
         }
         else if(item.getItemId() == R.id.action_delete)

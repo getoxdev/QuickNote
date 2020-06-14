@@ -4,19 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.quicknote.Database.NoteEntity;
 import com.quicknote.Model.NotesAdapter;
-import com.quicknote.Utils.SampleData;
 import com.quicknote.ViewModels.ListViewModel;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.fab_add_note)
     FloatingActionButton addNoteButton;
 
+    @BindView(R.id.no_notes)
+    TextView noNotes;
+
     private List<NoteEntity> mNotesList = new ArrayList<>();
     private ListViewModel listViewModel;
     NotesAdapter mNotesAdapter;
@@ -51,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         initViewModel();
-
         initRecyclerView();
     }
 
@@ -113,6 +115,11 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Note Deleted", Toast.LENGTH_SHORT).show();
     }
 
+    private void deleteAllData()
+    {
+        listViewModel.deleteAllData();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -127,26 +134,11 @@ public class MainActivity extends AppCompatActivity {
 
         switch(id)
         {
-            case R.id.add_sample_data:{
-                addSampleData();
-                return true;
-            }
-
             case R.id.delete_all_data:{
                 deleteAllData();
                 return true;
             }
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void addSampleData()
-    {
-        listViewModel.addSampleData();
-    }
-
-    private void deleteAllData()
-    {
-        listViewModel.deleteAllData();
     }
 }
