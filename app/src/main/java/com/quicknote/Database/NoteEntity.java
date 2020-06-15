@@ -15,6 +15,7 @@ public class NoteEntity {
     private Date date;
     private String text;
 
+    @Ignore
     public NoteEntity() {
     }
 
@@ -23,6 +24,7 @@ public class NoteEntity {
         this.text = text;
     }
 
+    @Ignore
     public NoteEntity(int ID, Date date, String text) {
         this.ID = ID;
         this.date = date;
