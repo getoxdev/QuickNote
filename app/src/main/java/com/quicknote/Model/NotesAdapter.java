@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -46,12 +47,24 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         final NoteEntity noteEntity = mNotesList.get(position);
         holder.noteText.setText(noteEntity.getText());
 
-        holder.fabEditNote.setOnClickListener(new View.OnClickListener() {
+        /*  holder.fabEditNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, EditorActivity.class);
                 intent.putExtra(NOTE_ID_KEY,noteEntity.getID());
                 mContext.startActivity(intent);
+            }
+        }); */
+
+
+        holder.noteCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(mContext, EditorActivity.class);
+                intent.putExtra(NOTE_ID_KEY,noteEntity.getID());
+                mContext.startActivity(intent);
+
             }
         });
     }
@@ -71,8 +84,13 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         @BindView(R.id.note_text)
         TextView noteText;
 
-        @BindView(R.id.fab_edit)
-        FloatingActionButton fabEditNote;
+        //@BindView(R.id.fab_edit)
+        //FloatingActionButton fabEditNote;
+
+        @BindView(R.id.noteCard)
+        CardView noteCard;
+
+        // CardView noteCard = (CardView) itemView.findViewById(R.id.noteCard);
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);

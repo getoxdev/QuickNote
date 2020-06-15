@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
         initViewModel();
         initRecyclerView();
+
+
     }
 
     @OnClick(R.id.fab_add_note)
@@ -92,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     private void initRecyclerView()
     {
         notesRecyclerView.hasFixedSize();
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         notesRecyclerView.setLayoutManager(layoutManager);
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {

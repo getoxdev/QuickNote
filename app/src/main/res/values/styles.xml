@@ -17,4 +17,18 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">#59B2EC</item>
+    </style>
+
+    <style name="Widget.LL.Toolbar" parent="@style/Widget.MaterialComponents.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.LL.Toolbar</item>
+        <item name="titleTextColor">#000</item>
+        <item name="android:background">?attr/colorSecondary</item>
+    </style>
+
+    <style name="TextAppearance.LL.Toolbar" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

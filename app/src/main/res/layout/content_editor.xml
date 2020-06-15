@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".EditorActivity"
-    tools:showIn="@layout/activity_editor">
+    tools:showIn="@layout/activity_editor"
+    android:background="#fff">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,7 +19,8 @@
             android:layout_height="match_parent"
             android:layout_margin="16dp"
             android:inputType="textMultiLine|textCapSentences"
-            android:hint="Enter text"/>
+            android:hint="Enter text"
+            android:background="#fff"/>
 
     </ScrollView>
 
