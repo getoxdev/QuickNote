@@ -24,8 +24,6 @@
         app:cardBackgroundColor="#DEE5F9"
         android:foreground="?android:attr/selectableItemBackground">
 
-
-
             <TextView
                 android:id="@+id/note_text"
                 android:layout_width="match_parent"

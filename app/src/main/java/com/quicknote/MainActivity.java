@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<NoteEntity> mNotesList = new ArrayList<>();
     private ListViewModel listViewModel;
-    NotesAdapter mNotesAdapter;
+    private NotesAdapter mNotesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     private void initRecyclerView()
     {
         notesRecyclerView.hasFixedSize();
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         notesRecyclerView.setLayoutManager(layoutManager);
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch(id)
         {
-            case R.id.delete_all_data:{
+            case R.id.action_delete_all_notes:{
                 deleteAllData();
                 return true;
             }
