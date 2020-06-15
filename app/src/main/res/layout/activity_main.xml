@@ -43,6 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
+                app:menu="@menu/menu_main"
+                android:theme="@style/Widget.Design.CollapsingToolbar"
                 app:titleTextColor="@color/expandedTitleTextAppearanceColor"/>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>

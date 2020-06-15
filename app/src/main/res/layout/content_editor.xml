@@ -13,14 +13,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/note_edit_text"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="16dp"
-            android:inputType="textMultiLine|textCapSentences"
-            android:hint="Enter text"
-            android:background="#fff"/>
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="#F0F3FD"
+            app:cardCornerRadius="10dp"
+            android:layout_margin="10dp">
+
+
+            <EditText
+                android:id="@+id/note_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:inputType="textMultiLine|textCapSentences"
+                android:hint="Enter text"
+                android:background="#F0F3FD"/>
+
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
 
     </ScrollView>
 
