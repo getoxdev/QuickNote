@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.no_notes)
     TextView noNotes;
 
+    @BindView(R.id.toolbar_main)
+    Toolbar toolbar;
+
     private List<NoteEntity> mNotesList = new ArrayList<>();
     private ListViewModel listViewModel;
     NotesAdapter mNotesAdapter;
@@ -51,13 +54,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         initViewModel();
         initRecyclerView();
-
-
     }
 
     @OnClick(R.id.fab_add_note)
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         notesRecyclerView.setLayoutManager(layoutManager);
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;

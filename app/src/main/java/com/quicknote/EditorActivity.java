@@ -41,7 +41,7 @@ public class EditorActivity extends AppCompatActivity {
     @BindView(R.id.note_edit_text)
     EditText noteEditText;
 
-    @BindView(R.id.toolbar)
+    @BindView(R.id.toolbar_editor)
     Toolbar toolbar;
 
     @BindView(R.id.toolbar_layout)
