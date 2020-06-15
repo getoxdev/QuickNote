@@ -39,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.fab_add_note)
     FloatingActionButton addNoteButton;
 
-    @BindView(R.id.no_notes)
-    TextView noNotes;
-
     @BindView(R.id.toolbar_main)
     Toolbar toolbar;
 

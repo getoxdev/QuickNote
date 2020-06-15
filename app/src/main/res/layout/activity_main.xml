@@ -49,18 +49,7 @@
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/no_notes"
-        android:textSize="32sp"
-        android:text="No Notes"
-        android:visibility="invisible"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"/>
-
+    
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notes_list"
         android:layout_width="match_parent"
