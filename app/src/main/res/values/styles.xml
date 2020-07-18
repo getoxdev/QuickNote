@@ -18,7 +18,7 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimaryDark">#59B2EC</item>
+        <item name="colorPrimaryDark">#FFF</item>
     </style>
 
     <style name="Widget.LL.Toolbar" parent="@style/Widget.MaterialComponents.Toolbar">
