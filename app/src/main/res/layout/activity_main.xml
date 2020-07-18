@@ -12,14 +12,14 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Widget.Design.CollapsingToolbar">
+        android:theme="@style/Widget.MaterialComponents.Toolbar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="@color/colorAccent"
             app:expandedTitleGravity="center"
-            app:title="Quick Note"
+            app:title="QuickNote"
             app:expandedTitleMarginTop="180dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 

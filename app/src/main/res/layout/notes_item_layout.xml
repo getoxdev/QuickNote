@@ -9,8 +9,7 @@
         android:id="@+id/noteCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="13dp"
-        app:cardElevation="4dp"
+        app:cardCornerRadius="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
@@ -21,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         android:clickable="true"
+        android:stateListAnimator="@animator/card_bounce"
         app:cardBackgroundColor="#DEE5F9"
         android:foreground="?android:attr/selectableItemBackground">
 
