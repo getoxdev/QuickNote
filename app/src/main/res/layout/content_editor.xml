@@ -48,7 +48,8 @@
         android:foreground="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="#F0F3FD"
         app:cardCornerRadius="10dp"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        app:cardElevation="0dp">
 
 
         <EditText
