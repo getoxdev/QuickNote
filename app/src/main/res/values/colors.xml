@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#ADB2B9</color>
-    <color name="colorAccent">#4271F1</color>
+    <color name="colorAccent">#AF00FF</color>
     <color name="expandedTitleTextAppearanceColor">#000</color>
     <color name="collapsedTitleTextAppearanceColor">#FFF</color>
 </resources>
