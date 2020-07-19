@@ -49,16 +49,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         final NoteEntity noteEntity = mNotesList.get(position);
         holder.noteText.setText(noteEntity.getText());
 
-        /*  holder.fabEditNote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, EditorActivity.class);
-                intent.putExtra(NOTE_ID_KEY,noteEntity.getID());
-                mContext.startActivity(intent);
-            }
-        }); */
-
-
         holder.noteCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
