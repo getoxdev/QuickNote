@@ -1,13 +1,17 @@
 package com.quicknote;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.airbnb.lottie.LottieAnimationView;
 
@@ -24,9 +28,13 @@ public class SplashScreenAcitivity extends AppCompatActivity {
 
         splashScreen = (LottieAnimationView) findViewById(R.id.splash_screen_anim);
 
+
+
         //animation
         animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bounce);
         splashScreen.setAnimation(animation);
+
+
 
 
 
@@ -39,7 +47,7 @@ public class SplashScreenAcitivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        },2000);
+        },1500);
 
     }
 }

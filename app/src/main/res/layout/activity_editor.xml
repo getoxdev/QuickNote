@@ -20,7 +20,7 @@
             android:layout_height="180dp"
             android:fitsSystemWindows="true"
             app:expandedTitleGravity="center"
-            app:contentScrim="?attr/colorAccent"
+            app:contentScrim="#FFF"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:toolbarId="@+id/toolbar">
 
