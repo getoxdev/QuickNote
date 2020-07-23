@@ -76,13 +76,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         @BindView(R.id.note_text)
         TextView noteText;
 
-        //@BindView(R.id.fab_edit)
-        //FloatingActionButton fabEditNote;
-
         @BindView(R.id.noteCard)
         CardView noteCard;
-
-        // CardView noteCard = (CardView) itemView.findViewById(R.id.noteCard);
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
