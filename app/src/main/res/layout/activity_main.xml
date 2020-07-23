@@ -67,12 +67,14 @@
         android:paddingTop="10dp"/>
 
     <TextView
+        android:id="@+id/empty_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="140dp"
-        android:textSize="20dp"
-        android:hint="Tap on + button to add notes"/>
+        android:textSize="24sp"
+        android:visibility="invisible"
+        android:text="Tap on + button to add notes"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_note"

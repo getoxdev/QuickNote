@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.toolbar_main)
     Toolbar toolbar;
 
+    @BindView(R.id.empty_text)
+    TextView emptyText;
+
     private List<NoteEntity> mNotesList = new ArrayList<>();
     private ListViewModel listViewModel;
     private NotesAdapter mNotesAdapter;
@@ -77,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
                 {
                     mNotesAdapter = new NotesAdapter(MainActivity.this,mNotesList);
                     notesRecyclerView.setAdapter(mNotesAdapter);
+                    if(mNotesAdapter.getItemCount()==0)
+                    {
+                       emptyText.setVisibility(View.VISIBLE);
+                    }
                 }
                 else
                 {
