@@ -8,6 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +20,9 @@ public class SplashScreenAcitivity extends AppCompatActivity {
 
     Handler mhandler;
     Animation animation;
+    Animation animation2;
     LottieAnimationView splashScreen;
+    TextView appName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,12 +30,16 @@ public class SplashScreenAcitivity extends AppCompatActivity {
         setContentView(R.layout.splash_screen_activity);
 
         splashScreen = (LottieAnimationView) findViewById(R.id.splash_screen_anim);
+        appName = (TextView) findViewById(R.id.app_name);
 
 
 
         //animation
         animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.bounce);
         splashScreen.setAnimation(animation);
+        animation2 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_card);
+        appName.setAnimation(animation2);
+
 
 
 

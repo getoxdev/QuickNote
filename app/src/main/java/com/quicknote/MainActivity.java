@@ -1,6 +1,7 @@
 package com.quicknote;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.quicknote.Database.NoteEntity;
 import com.quicknote.Model.NotesAdapter;
@@ -16,6 +18,7 @@ import com.quicknote.ViewModels.ListViewModel;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -45,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.empty_text)
     TextView emptyText;
 
+    @BindView(R.id.collapsed_toolbar)
+    CollapsingToolbarLayout collapsingToolbarLayout;
+
     private List<NoteEntity> mNotesList = new ArrayList<>();
     private ListViewModel listViewModel;
     private NotesAdapter mNotesAdapter;
@@ -59,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
 
         initViewModel();
         initRecyclerView();
+
+        //changed typeface for collaspsing toolbar layout
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsed_toolbar);
+        Typeface typeface = ResourcesCompat.getFont(this, R.font.myfont);
+        collapsingToolbarLayout.setCollapsedTitleTypeface(typeface);
+        collapsingToolbarLayout.setExpandedTitleTypeface(typeface);
     }
 
     @OnClick(R.id.fab_add_note)
