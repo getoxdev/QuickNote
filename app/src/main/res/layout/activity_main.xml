@@ -10,6 +10,7 @@
     android:background="#fff">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:elevation="0dp"
@@ -48,7 +49,31 @@
                 app:layout_collapseMode="pin"
                 app:menu="@menu/menu_main"
                 app:titleTextColor="@color/expandedTitleTextAppearanceColor"
-                app:titleMarginStart="2dp"/>
+                app:titleMarginStart="2dp">
+
+                <com.ferfalk.simplesearchview.SimpleSearchView
+                    android:id="@+id/searchView_normal"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="#fff"
+                    app:searchBackground="#2FDFDDDD"
+                    app:type="card"/>
+
+
+
+
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+            <com.ferfalk.simplesearchview.SimpleSearchView
+                android:id="@+id/searchView_collapsing"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="#fff"
+                app:searchBackground="#2FDFDDDD"
+                app:type="card"/>
+
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>

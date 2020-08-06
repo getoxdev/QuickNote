@@ -9,4 +9,10 @@
     android:orderInCategory="100"
     app:showAsAction="never"
     android:title="Delete All Notes" />
+
+    <item
+        android:id="@+id/search_field"
+        android:title="Search"
+        app:showAsAction="always|collapseActionView"
+        android:icon="@drawable/recycler_search" />
 </menu>
