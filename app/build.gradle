@@ -66,7 +66,6 @@ dependencies {
     def lottieVersion = "3.4.0"
     implementation "com.airbnb.android:lottie:3.4.1"
 
-    //custom search view
-    implementation 'com.github.Ferfalk:SimpleSearchView:0.1.5'
+
 
 }

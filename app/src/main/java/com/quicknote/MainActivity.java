@@ -8,11 +8,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ferfalk.simplesearchview.SimpleSearchView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -61,9 +61,13 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.appbarlayout)
     AppBarLayout appBarLayout;
 
+    @BindView(R.id.search_edit_text)
+    EditText searchInput;
+
     private List<NoteEntity> mNotesList = new ArrayList<>();
     private ListViewModel listViewModel;
     private NotesAdapter mNotesAdapter;
+    private boolean isExpanded;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +80,46 @@ public class MainActivity extends AppCompatActivity {
         initViewModel();
         initRecyclerView();
 
-        //changed typeface for collaspsing toolbar layout
+        //changed typeface for collapsing toolbar layout
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsed_toolbar);
         Typeface typeface = ResourcesCompat.getFont(this, R.font.myfont);
         collapsingToolbarLayout.setCollapsedTitleTypeface(typeface);
         collapsingToolbarLayout.setExpandedTitleTypeface(typeface);
+
+
+        //searchInput animation
+        searchInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if(hasFocus){
+                    appBarLayout.setExpanded(false,true);
+                }
+                else{
+                    toolbar.setVisibility(View.VISIBLE);
+                    appBarLayout.setExpanded(true,true);
+                    appBarLayout.setVisibility(View.VISIBLE);
+                    collapsingToolbarLayout.setVisibility(View.VISIBLE);
+                    toolbar.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if(verticalOffset == 0){
+                    isExpanded = true;
+                }
+
+                else{
+                    isExpanded = false;
+                }
+            }
+        });
+
+
     }
 
     @OnClick(R.id.fab_add_note)
@@ -152,74 +191,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.menu_main,menu);
-        MenuItem item = menu.findItem(R.id.search_field);
-        SimpleSearchView searchViewCollapsing = (SimpleSearchView) findViewById(R.id.searchView_collapsing);
-        searchViewCollapsing.setMenuItem(item);
-        searchViewCollapsing.setOnQueryTextListener(new SimpleSearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextCleared() {
-                return false;
-            }
-        });
-
-
-        SimpleSearchView searchViewNormal = (SimpleSearchView) findViewById(R.id.searchView_normal);
-        searchViewNormal.setOnQueryTextListener(new SimpleSearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextCleared() {
-                return false;
-            }
-        });
-
-
-        //TODO: enable the different search for different toolbar layouts collapsed and expanded.
-
-        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
-                    // Collapsed
-                    searchViewCollapsing.setVisibility(View.GONE);
-                    searchViewNormal.setVisibility(View.VISIBLE);
-
-                } else if (verticalOffset == 0) {
-                    // Expanded
-                    searchViewNormal.setVisibility(View.GONE);
-                    searchViewCollapsing.setVisibility(View.VISIBLE);
-
-                } else {
-                    // Somewhere in between
-
-
-                }
-            }
-        });
-
-
-
-
         return true;
     }
 
@@ -236,5 +208,39 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private int counter = 0;
+
+    @Override
+    public void onBackPressed() {
+
+
+        if(!isExpanded){
+
+            if(counter == 0){
+                appBarLayout.setExpanded(true, true);
+                appBarLayout.setVisibility(View.VISIBLE);
+                searchInput.clearFocus();
+                counter++;
+
+            }
+            else if(counter == 1){
+
+                super.onBackPressed();
+
+            }
+
+
+        }
+        else
+        {
+            super.onBackPressed();
+        }
+
+
+
+
+
     }
 }

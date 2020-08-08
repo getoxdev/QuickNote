@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ import com.quicknote.Database.NoteEntity;
 import com.quicknote.EditorActivity;
 import com.quicknote.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -56,11 +59,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         holder.noteCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(mContext, EditorActivity.class);
                 intent.putExtra(NOTE_ID_KEY,noteEntity.getID());
                 mContext.startActivity(intent);
-
             }
         });
     }
@@ -74,6 +75,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
     {
         return mNotesList.get(position);
     }
+
+
 
     class MyViewHolder extends RecyclerView.ViewHolder
     {
