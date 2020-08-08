@@ -10,10 +10,12 @@
     android:background="#fff">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:elevation="0dp"
-        android:theme="@style/Widget.Design.CollapsingToolbar">
+        android:theme="@style/Widget.Design.CollapsingToolbar"
+        android:background="#fff">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsed_toolbar"
@@ -48,27 +50,51 @@
                 app:layout_collapseMode="pin"
                 app:menu="@menu/menu_main"
                 app:titleTextColor="@color/expandedTitleTextAppearanceColor"
-                app:titleMarginStart="2dp"/>
+                app:titleMarginStart="2dp">
+            </androidx.appcompat.widget.Toolbar>
+
+
+
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+        <EditText
+            android:id="@+id/search_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search"
+            android:drawableLeft="@drawable/recycler_search"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+
+            android:drawablePadding="12dp"
+            android:background="@drawable/search_background"/>
+
+
+
+
+
     </com.google.android.material.appbar.AppBarLayout>
-    
+
+
+
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notes_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="0dp"
+        android:background="#FFF"
         android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:background="#FFF"
+        android:paddingTop="10dp"
         android:scrollbars="vertical"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:paddingTop="10dp"/>
+        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/empty_text"
@@ -88,6 +114,6 @@
         android:layout_margin="@dimen/fab_margin"
         app:fabSize="normal"
         app:srcCompat="@drawable/add_icon_white"
-        android:layout_marginRight="10dp" />
+        android:layout_marginRight="10dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

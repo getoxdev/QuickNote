@@ -47,20 +47,50 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
-        app:cardBackgroundColor="#F0F3FD"
+        app:cardBackgroundColor="#FFF"
         app:cardCornerRadius="10dp"
         android:layout_margin="10dp"
         app:cardElevation="0dp">
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/note_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:inputType="textMultiLine|textCapSentences"
-            android:hint="Enter text"
-            android:background="#F0F3FD"/>
+
+
+            <EditText
+                android:id="@+id/title_of_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/note_edit_text"
+                android:hint="Title"
+                android:drawableBottom="@drawable/title_separator"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:background="#fff"
+                android:padding="10dp"/>
+
+
+
+            <EditText
+                android:id="@+id/note_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:inputType="textMultiLine|textCapSentences"
+                android:hint="Enter text"
+                android:textSize="17sp"
+                android:padding="10dp"
+                android:layout_below="@id/title_of_note"
+                android:background="#fff"/>
+
+
+
+
+        </RelativeLayout>
+
+
+
 
 
 

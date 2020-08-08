@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -26,20 +26,47 @@
         android:hapticFeedbackEnabled="true"
         android:foreground="?android:attr/selectableItemBackground">
 
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/note_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 android:ellipsize="end"
                 android:maxLines="8"
                 android:text="Notes"
-                android:textSize="18sp"
+                android:layout_below="@id/title_note"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/fab_edit"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:padding="6dp"/>
+                android:padding="6dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="0dp"/>
+
+
+            <TextView
+                android:id="@+id/title_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textStyle="bold"
+                android:layout_marginLeft="8dp"
+                android:textSize="18sp"
+                android:padding="5dp" />
+
+
+
+
+
+        </RelativeLayout>
+
+
 
     </androidx.cardview.widget.CardView>
 
