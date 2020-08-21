@@ -88,6 +88,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         @BindView(R.id.noteCard)
         CardView noteCard;
 
+
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 

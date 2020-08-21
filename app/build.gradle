@@ -66,6 +66,9 @@ dependencies {
     def lottieVersion = "3.4.0"
     implementation "com.airbnb.android:lottie:3.4.1"
 
+    //overscroll animation that can be used in anything any view
+    compile 'me.everything:overscroll-decor-android:1.1.0'
+
 
 
 }

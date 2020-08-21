@@ -50,6 +50,8 @@ public class EditorActivity extends AppCompatActivity {
     @BindView(R.id.toolbar_layout)
     CollapsingToolbarLayout toolbarLayout;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

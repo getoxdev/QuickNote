@@ -39,6 +39,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
+
 import android.graphics.Color;
 
 public class MainActivity extends AppCompatActivity {
@@ -163,6 +165,8 @@ public class MainActivity extends AppCompatActivity {
         notesRecyclerView.hasFixedSize();
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         notesRecyclerView.setLayoutManager(layoutManager);
+
+        OverScrollDecoratorHelper.setUpOverScroll(notesRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
             @Override
