@@ -44,6 +44,9 @@ public class EditorActivity extends AppCompatActivity {
     @BindView(R.id.toolbar_editor)
     Toolbar toolbar;
 
+    @BindView(R.id.title_of_note)
+    EditText noteTitle;
+
     @BindView(R.id.toolbar_layout)
     CollapsingToolbarLayout toolbarLayout;
 
@@ -82,6 +85,7 @@ public class EditorActivity extends AppCompatActivity {
                 if(noteEntity!=null && !isEditing)
                 {
                     noteEditText.setText(noteEntity.getText());
+                    noteTitle.setText(noteEntity.getTitle());
                 }
             }
         });
@@ -144,6 +148,6 @@ public class EditorActivity extends AppCompatActivity {
 
     private void saveAndExit()
     {
-        editorViewModel.saveAndExit(noteEditText.getText().toString());
+        editorViewModel.saveAndExit(noteEditText.getText().toString(),noteTitle.getText().toString());
     }
 }

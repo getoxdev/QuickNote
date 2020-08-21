@@ -14,21 +14,24 @@ public class NoteEntity {
 
     private Date date;
     private String text;
+    private String title;
 
     @Ignore
     public NoteEntity() {
     }
 
-    public NoteEntity(Date date, String text) {
+    public NoteEntity(Date date, String text, String title) {
         this.date = date;
         this.text = text;
+        this.title = title;
     }
 
     @Ignore
-    public NoteEntity(int ID, Date date, String text) {
+    public NoteEntity(int ID, Date date, String text, String title) {
         this.ID = ID;
         this.date = date;
         this.text = text;
+        this.title = title;
     }
 
     public int getID() {
@@ -53,5 +56,13 @@ public class NoteEntity {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

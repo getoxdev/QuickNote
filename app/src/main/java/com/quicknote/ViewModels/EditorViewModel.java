@@ -37,7 +37,7 @@ public class EditorViewModel extends AndroidViewModel {
         });
     }
 
-    public void saveAndExit(String noteText)
+    public void saveAndExit(String noteText, String noteTitle)
     {
         NoteEntity noteEntity = liveNote.getValue();
 
@@ -49,13 +49,14 @@ public class EditorViewModel extends AndroidViewModel {
             }
             else
             {
-                noteEntity = new NoteEntity(new Date(),noteText.trim());
+                noteEntity = new NoteEntity(new Date(),noteText.trim(),noteTitle);
             }
         }
         else
         {
             noteEntity.setText(noteText.trim());
             noteEntity.setDate(new Date());
+            noteEntity.setTitle(noteTitle);
         }
 
         notesRepo.insertNote(noteEntity);

@@ -51,6 +51,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
 
         final NoteEntity noteEntity = mNotesList.get(position);
         holder.noteText.setText(noteEntity.getText());
+        holder.titleNote.setText(noteEntity.getTitle());
 
         //animation for appearance of notes in fading fashion
         Animation cardAnim = AnimationUtils.loadAnimation(mContext,R.anim.fade_card);
@@ -76,12 +77,13 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         return mNotesList.get(position);
     }
 
-
-
     class MyViewHolder extends RecyclerView.ViewHolder
     {
         @BindView(R.id.note_text)
         TextView noteText;
+
+        @BindView(R.id.title_note)
+        TextView titleNote;
 
         @BindView(R.id.noteCard)
         CardView noteCard;
