@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(mNotesAdapter == null)
                 {
-                    mNotesAdapter = new NotesAdapter(MainActivity.this,mNotesList);
+                    mNotesAdapter = new NotesAdapter(MainActivity.this, mNotesList);
                     notesRecyclerView.setAdapter(mNotesAdapter);
                     if(mNotesAdapter.getItemCount()==0)
                     {
@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 {
                     mNotesAdapter.notifyDataSetChanged();
                 }
+
             }
         };
 

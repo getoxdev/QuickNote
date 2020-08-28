@@ -69,6 +69,11 @@ dependencies {
     //overscroll animation that can be used in anything any view
     compile 'me.everything:overscroll-decor-android:1.1.0'
 
+    //popup show for notes
+    compile 'com.rm:longpresspopup:1.0.1'
+
+
+
 
 
 }
