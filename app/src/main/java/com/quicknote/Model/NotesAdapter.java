@@ -2,6 +2,8 @@ package com.quicknote.Model;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.quicknote.Database.NoteEntity;
 import com.quicknote.EditorActivity;
@@ -55,6 +58,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
     private Button delete_note;
     private String title, text;
     private TextView titlePopup, textPopup;
+    private LottieAnimationView animationView;
 
 
     public NotesAdapter(Context mContext, List<NoteEntity> mNotesList) {
@@ -180,7 +184,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         public void onClick(View v) {
             delete_note = v.findViewById(R.id.delete_popup);
             if(delete_note != null){
-
+                //delete_note.setBackgroundColor(Color.parseColor("#ADCED9"));
                 NoteEntity noteEntity = mNotesList.get(getAdapterPosition());
                 viewModel.deleteNote(noteEntity);
                 Toast.makeText(mContext, "Note Deleted", Toast.LENGTH_SHORT).show();
@@ -195,6 +199,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
             popupLayout = (ConstraintLayout) root.findViewById(R.id.popup_container);
             titlePopup = (TextView) root.findViewById(R.id.title_popup);
             textPopup = (TextView) root.findViewById(R.id.text_popup);
+            delete_note = (Button) root.findViewById(R.id.delete_popup);
+
+
 
 
 
@@ -204,6 +211,16 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
 
         @Override
         public void onHoverChanged(View view, boolean isHovered) {
+
+          if(isHovered){
+              if(view.getId() == delete_note.getId()){
+                  delete_note.setBackgroundColor(Color.parseColor("#97B7F0"));
+
+              }
+              else{
+                  delete_note.setBackgroundColor(Color.parseColor("#CADFE6"));
+              }
+          }
 
         }
 

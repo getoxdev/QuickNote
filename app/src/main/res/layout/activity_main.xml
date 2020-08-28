@@ -102,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="140dp"
-        android:textSize="24sp"
+        android:textSize="16dp"
         android:visibility="invisible"
         android:text="Tap on + button to add notes"/>
 

@@ -6,16 +6,21 @@
     android:layout_width="match_parent"
     android:id="@+id/popup_container"
     android:background="@drawable/popup_background"
-    android:layout_height="400dp">
+    android:layout_height="400dp"
+    android:layout_gravity="center"
+    android:outlineAmbientShadowColor="@color/colorAccent">
 
 
     <TextView
         android:id="@+id/title_popup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:padding="10dp"
-        android:text="TextView"
+        android:text="Title"
+        android:textSize="17dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +32,7 @@
         android:layout_height="0dp"
         android:text="TextView"
         android:padding="20dp"
+        android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/delete_popup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,9 +43,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Delete"
-        android:background="@android:color/transparent"
+        android:background="#CADFE6"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
