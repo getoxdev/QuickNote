@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +27,7 @@ import com.quicknote.Database.NoteEntity;
 import com.quicknote.EditorActivity;
 import com.quicknote.MainActivity;
 import com.quicknote.R;
+import com.quicknote.ViewModels.ListViewModel;
 
 import org.w3c.dom.Text;
 
@@ -47,6 +49,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
     private Context mContext;
     private List<NoteEntity> mNotesList;
 
+
     //containers for popupview
     private ConstraintLayout popupLayout;
     private Button delete_note;
@@ -57,6 +60,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
     public NotesAdapter(Context mContext, List<NoteEntity> mNotesList) {
         this.mContext = mContext;
         this.mNotesList = mNotesList;
+
+
     }
 
 
@@ -131,11 +136,15 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         CardView noteCard;
 
         LongPressPopup longPressPopup;
+        private ListViewModel viewModel;
+
+
 
 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            viewModel = new ViewModelProvider((MainActivity)mContext).get(ListViewModel.class);
 
             ButterKnife.bind(this,itemView);
         }
@@ -171,7 +180,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         public void onClick(View v) {
             delete_note = v.findViewById(R.id.delete_popup);
             if(delete_note != null){
-                Toast.makeText(mContext, "Item Clicked", Toast.LENGTH_SHORT).show();
+
+                NoteEntity noteEntity = mNotesList.get(getAdapterPosition());
+                viewModel.deleteNote(noteEntity);
+                Toast.makeText(mContext, "Note Deleted", Toast.LENGTH_SHORT).show();
+
 
             }
 
