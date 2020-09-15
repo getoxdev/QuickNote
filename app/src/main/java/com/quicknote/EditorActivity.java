@@ -6,6 +6,9 @@ import android.os.Bundle;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.transition.platform.MaterialArcMotion;
+import com.google.android.material.transition.platform.MaterialContainerTransform;
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
 import com.quicknote.Database.NoteEntity;
 import com.quicknote.Utils.Constants;
 import com.quicknote.ViewModels.EditorViewModel;
@@ -14,6 +17,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -21,6 +27,8 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -47,16 +55,32 @@ public class EditorActivity extends AppCompatActivity {
     @BindView(R.id.title_of_note)
     EditText noteTitle;
 
-    @BindView(R.id.toolbar_layout)
-    CollapsingToolbarLayout toolbarLayout;
+
+    @BindView(R.id.container_transform)
+    ConstraintLayout coordinatorLayout;
+
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
         setContentView(R.layout.activity_editor);
+
+
         ButterKnife.bind(this);
+
+        setEnterSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
+
+        MaterialContainerTransform transform = new MaterialContainerTransform();
+        transform.setPathMotion(new MaterialArcMotion());
+        transform.addTarget(coordinatorLayout);
+        transform.setDuration(400);
+
+        getWindow().setSharedElementEnterTransition(transform);
+
+
 
         if(savedInstanceState!=null)
         {
@@ -95,12 +119,12 @@ public class EditorActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if(bundle==null)
         {
-            toolbarLayout.setTitle("New Note");
+            getSupportActionBar().setTitle("New Note");
             newNote = true;
         }
         else
         {
-            toolbarLayout.setTitle("Edit Note");
+            getSupportActionBar().setTitle("Edit Note");
             int noteID = bundle.getInt(NOTE_ID_KEY);
             editorViewModel.loadNote(noteID);
             newNote = false;
@@ -125,13 +149,13 @@ public class EditorActivity extends AppCompatActivity {
         if(item.getItemId() == android.R.id.home)
         {
             saveAndExit();
-            finish();
+            finishAfterTransition();
             return true;
         }
         else if(item.getItemId() == R.id.action_delete)
         {
             deleteNote();
-            finish();
+            finishAfterTransition();
             return true;
         }
         return super.onOptionsItemSelected(item);

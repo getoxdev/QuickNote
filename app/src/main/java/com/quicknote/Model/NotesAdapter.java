@@ -1,5 +1,7 @@
 package com.quicknote.Model;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -26,6 +28,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.transition.platform.MaterialArcMotion;
+import com.google.android.material.transition.platform.MaterialContainerTransform;
 import com.quicknote.Database.NoteEntity;
 import com.quicknote.EditorActivity;
 import com.quicknote.MainActivity;
@@ -90,6 +94,12 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         holder.noteText.setText(noteEntity.getText());
         holder.titleNote.setText(noteEntity.getTitle());
 
+        //Material container transform on notecard
+        MaterialContainerTransform transform = new MaterialContainerTransform();
+        transform.setDuration(400);
+        transform.addTarget(holder.noteCard);
+        transform.setPathMotion(new MaterialArcMotion());
+
         //getting title and text for popup view
         title = noteEntity.getTitle();
         text = noteEntity.getText();
@@ -102,8 +112,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, EditorActivity.class);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) mContext, holder.noteCard, "fab_expand");
                 intent.putExtra(NOTE_ID_KEY,noteEntity.getID());
-                mContext.startActivity(intent);
+                mContext.startActivity(intent, options.toBundle());
             }
         });
 

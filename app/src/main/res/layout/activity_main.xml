@@ -113,6 +113,7 @@
         android:layout_gravity="bottom|right"
         android:layout_margin="@dimen/fab_margin"
         app:fabSize="normal"
+        android:transitionName="fab_expand"
         app:srcCompat="@drawable/add_icon_white"
         android:layout_marginRight="10dp"/>
 

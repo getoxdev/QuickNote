@@ -1,13 +1,16 @@
 package com.quicknote;
 
 import android.animation.LayoutTransition;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.transition.TransitionManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,6 +19,9 @@ import android.widget.Toast;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.transition.MaterialSharedAxis;
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
+import com.google.android.material.transition.platform.MaterialFade;
 import com.quicknote.Database.NoteEntity;
 import com.quicknote.Model.NotesAdapter;
 import com.quicknote.ViewModels.ListViewModel;
@@ -74,8 +80,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
+        getWindow().setSharedElementsUseOverlay(true);
+        getWindow().setEnterTransition(new MaterialFade().setDuration(400));
+        getWindow().setExitTransition(new MaterialFade().setDuration(400));
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+
+        setExitSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
+
+
+
+
 
         setSupportActionBar(toolbar);
 
@@ -128,7 +145,8 @@ public class MainActivity extends AppCompatActivity {
     void createNewNote()
     {
         Intent intent = new Intent(MainActivity.this,EditorActivity.class);
-        startActivity(intent);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, addNoteButton, "fab_expand");
+        startActivity(intent, options.toBundle());
     }
 
     private void initViewModel()
