@@ -104,9 +104,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         title = noteEntity.getTitle();
         text = noteEntity.getText();
 
-        //animation for appearance of notes in fading fashion
-        Animation cardAnim = AnimationUtils.loadAnimation(this.mContext,R.anim.fade_card);
-        holder.noteCard.setAnimation(cardAnim);
 
         holder.noteCard.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -23,7 +23,8 @@
         app:cardElevation="0dp"
         android:clickable="true"
         android:stateListAnimator="@animator/card_bounce"
-        app:cardBackgroundColor="#DBD6FF"
+        app:cardBackgroundColor="#D6D3EC"
+        android:background="#DCC3F1"
         android:hapticFeedbackEnabled="true"
         android:foreground="?android:attr/selectableItemBackground">
 
