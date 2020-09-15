@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -81,9 +82,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
-        getWindow().setSharedElementsUseOverlay(true);
-        getWindow().setEnterTransition(new MaterialFade().setDuration(400));
-        getWindow().setExitTransition(new MaterialFade().setDuration(400));
+        getWindow().setSharedElementsUseOverlay(false);
+        getWindow().setEnterTransition(new MaterialFade().setDuration(400).setInterpolator(new AccelerateDecelerateInterpolator()));
+        getWindow().setExitTransition(new MaterialFade().setDuration(400).setInterpolator(new AccelerateDecelerateInterpolator()));
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 

@@ -165,6 +165,7 @@ public class EditorActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         saveAndExit();
+        finishAfterTransition();
     }
 
     private void deleteNote()
