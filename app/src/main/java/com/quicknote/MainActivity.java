@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.ContactsContract;
 import android.transition.TransitionManager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +26,8 @@ import com.google.android.material.transition.MaterialSharedAxis;
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
 import com.google.android.material.transition.platform.MaterialFade;
 import com.quicknote.Database.NoteEntity;
+import com.quicknote.Database.NotesDao;
+import com.quicknote.Database.NotesRepo;
 import com.quicknote.Model.NotesAdapter;
 import com.quicknote.ViewModels.ListViewModel;
 
@@ -32,6 +36,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -97,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        initViewModel();
-        initRecyclerView();
+        //initViewModel();
+
 
         //changed typeface for collapsing toolbar layout
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsed_toolbar);
@@ -139,7 +144,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //new code to populate the recycler view
+        listViewModel = ViewModelProviders.of(this).get(ListViewModel.class);
+        mNotesAdapter = new NotesAdapter();
 
+        listViewModel.getAllNotes().observe(this, new Observer<List<NoteEntity>>() {
+            @Override
+            public void onChanged(List<NoteEntity> noteEntities) {
+
+                        mNotesAdapter.submitList(noteEntities);
+
+            }
+        });
+
+        notesRecyclerView.setAdapter(mNotesAdapter);
+        notesRecyclerView.getItemAnimator().setMoveDuration(300);
+        notesRecyclerView.getItemAnimator().setChangeDuration(100);
+        notesRecyclerView.getItemAnimator().setAddDuration(300);
+
+
+        initRecyclerView();
+
+        //code finishes
     }
 
     @OnClick(R.id.fab_add_note)
@@ -149,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, addNoteButton, "fab_expand");
         startActivity(intent, options.toBundle());
     }
-
+//this method is not used now
     private void initViewModel()
     {
         Observer<List<NoteEntity>> notesObserver = new Observer<List<NoteEntity>>() {
@@ -160,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(mNotesAdapter == null)
                 {
-                    mNotesAdapter = new NotesAdapter(MainActivity.this, mNotesList);
+                    mNotesAdapter = new NotesAdapter();
                     notesRecyclerView.setAdapter(mNotesAdapter);
                     if(mNotesAdapter.getItemCount()==0)
                     {
@@ -171,6 +197,8 @@ public class MainActivity extends AppCompatActivity {
                 {
                     mNotesAdapter.notifyDataSetChanged();
                 }
+
+
 
             }
         };

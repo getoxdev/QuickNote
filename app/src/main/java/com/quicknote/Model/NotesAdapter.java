@@ -51,10 +51,10 @@ import rm.com.longpresspopup.PopupStateListener;
 
 import static com.quicknote.Utils.Constants.NOTE_ID_KEY;
 
-public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder> {
+public class NotesAdapter extends ListAdapter<NoteEntity,NotesAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<NoteEntity> mNotesList;
+//    private List<NoteEntity> mNotesList;
 
 
     //containers for popupview
@@ -64,23 +64,39 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
     private TextView titlePopup, textPopup;
     private LottieAnimationView animationView;
 
+        //TODO: To be deleted as its of no use
+//    public NotesAdapter(Context mContext, List<NoteEntity> mNotesList) {
+//        this();
+//        this.mContext = mContext;
+////        this.mNotesList = mNotesList;
+//
+//
+//    }
 
-    public NotesAdapter(Context mContext, List<NoteEntity> mNotesList) {
-        this.mContext = mContext;
-        this.mNotesList = mNotesList;
-
-
+    public NotesAdapter() {
+        super(DIFF_CALLBACK);
     }
 
+    private static final DiffUtil.ItemCallback<NoteEntity> DIFF_CALLBACK = new DiffUtil.ItemCallback<NoteEntity>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull NoteEntity oldItem, @NonNull NoteEntity newItem) {
+            return oldItem.getID() == newItem.getID();
+        }
 
-
+        @Override
+        public boolean areContentsTheSame(@NonNull NoteEntity oldItem, @NonNull NoteEntity newItem) {
+            return oldItem.getTitle().equals(newItem.getTitle())
+                    && oldItem.getText().equals(newItem.getText())
+                    && oldItem.getDate().toString().equals(newItem.getDate().toString());
+        }
+    };
 
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(mContext).inflate(R.layout.notes_item_layout,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.notes_item_layout,parent,false);
         mContext = parent.getContext();
         return new MyViewHolder(view);
     }
@@ -90,7 +106,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
 
 
 
-        final NoteEntity noteEntity = mNotesList.get(position);
+        final NoteEntity noteEntity = getItem(position);
         holder.noteText.setText(noteEntity.getText());
         holder.titleNote.setText(noteEntity.getTitle());
 
@@ -122,15 +138,20 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
 
     }
 
+    //TODO: to be deleted as these methods are no longer used
+//    @Override
+//    public int getItemCount() {
+//        return mNotesList.size();
+//    }
 
-    @Override
-    public int getItemCount() {
-        return mNotesList.size();
-    }
+//    public void setNotes(List<NoteEntity> notes){
+//        mNotesList = notes;
+//        notifyDataSetChanged();
+//    }
 
     public NoteEntity getNoteAtPosition(int position)
     {
-        return mNotesList.get(position);
+        return getItem(position);
     }
 
 
@@ -193,7 +214,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
             delete_note = v.findViewById(R.id.delete_popup);
             if(delete_note != null){
                 //delete_note.setBackgroundColor(Color.parseColor("#ADCED9"));
-                NoteEntity noteEntity = mNotesList.get(getAdapterPosition());
+                NoteEntity noteEntity = getItem(getAdapterPosition());
                 viewModel.deleteNote(noteEntity);
                 Toast.makeText(mContext, "Note Deleted", Toast.LENGTH_SHORT).show();
 
@@ -235,10 +256,10 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         @Override
         public void onPopupShow(@Nullable String popupTag) {
             if(titlePopup != null){
-                titlePopup.setText(mNotesList.get(getAdapterPosition()).getTitle());
+                titlePopup.setText(getItem(getAdapterPosition()).getTitle());
             }
             if(textPopup != null){
-                textPopup.setText(mNotesList.get(getAdapterPosition()).getText());
+                textPopup.setText(getItem(getAdapterPosition()).getText());
             }
 
 
