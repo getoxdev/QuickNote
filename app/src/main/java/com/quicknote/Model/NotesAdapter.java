@@ -88,6 +88,7 @@ public class NotesAdapter extends ListAdapter<NoteEntity,NotesAdapter.MyViewHold
             return oldItem.getTitle().equals(newItem.getTitle())
                     && oldItem.getText().equals(newItem.getText())
                     && oldItem.getDate().toString().equals(newItem.getDate().toString());
+
         }
     };
 
